@@ -6,7 +6,7 @@ import com.bank.web.domains.AccountBean;
 
 public interface AccountService {
 	
-	public void createAccount(int money);
+	public void createAccount(String money);
 	public String createAccountNum();
 	
 	//계좌번호생성 (랜덤숫자4 - 랜덤숫자4);

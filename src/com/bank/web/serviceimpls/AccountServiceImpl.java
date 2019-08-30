@@ -12,13 +12,14 @@ import com.bank.web.services.AccountService;
 public class AccountServiceImpl implements AccountService{
 
 	private List<AccountBean> acc;
+	
 	public AccountServiceImpl() {
 		acc = new ArrayList<AccountBean>();
 		
 	}
 	
 	@Override
-	public void createAccount(int money) {
+	public void createAccount(String money) {
 		AccountBean temp = new AccountBean();
 		temp.setMoney(String.valueOf(money));
 		temp.setAccountNum(createAccountNum());

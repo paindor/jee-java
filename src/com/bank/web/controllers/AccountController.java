@@ -17,25 +17,17 @@ import com.bank.web.services.AccountService;
 @WebServlet("/account.do")
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AccountService as = null;
 	
-    public AccountController() {
-        super();
-        as = new AccountServiceImpl();
-        // TODO Auto-generated constructor stub
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String money = request.getParameter("money");
-		AccountBean a = new AccountBean();
-		as.createAccount(Integer.parseInt(money));
+		AccountService acc =  new AccountServiceImpl();
 		System.out.println("계좌개설완료 " + money);
-		
+		acc.createAccount(money);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

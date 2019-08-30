@@ -27,6 +27,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void register(EmployeeBean param) {
 		employees.add(param);
+		EmployeeBean emplo = new EmployeeBean();
 	}
 
 	@Override
