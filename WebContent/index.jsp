@@ -4,24 +4,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>은행관리시스템</title>
+<title>비트은행</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <div>
-	<h2>계좌개설</h2>
-	<form  id = "account_form" action = "<%=request.getContextPath()%>/account.do">
-		  입금액<input type="text"  name = "money"/> <br/>
-		
-		<input type = "submit" id="test" value = "전송" />
-	</form> 
+    <h2>환영합니다</h2>
+   	<table border = '1'>
+   		<tr>
+   			<td>로그인</td>
+   			<td><input id = "btn" type="button"value = "LOGIN" /></td>
+   		</tr>
+   		<tr>
+   			<td>회원가입</td>
+   			<td><a id = "clk" href="#">바로가기</a></td>
+   		</tr>
+   	</table>
 </div>
 <script>
-$('#account_form').submit(function() {
+$('#btn').click(function() {
+	alert('버튼클릭');
+	location.assign('<%=request.getContextPath()%>/member.do?action=move&dest=login');
 	
-	alert('통장테스트!!!'); 
-	
-	
+});
+$('#clk').click(function() {
+	alert('바로가즈아');
+	location.assign('<%=request.getContextPath()%>/member.do?action=move&dest=join');
 });
 </script>
 </body>
