@@ -6,6 +6,8 @@ import com.bank.web.domains.EmployeeBean;
 public interface MemberDAO {
 	public void insertCustomer(CustomerBean param);
 	public void insertEmplyoee(EmployeeBean param);
+	public CustomerBean login(CustomerBean param);
+	
 	
 
 	

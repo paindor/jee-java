@@ -22,6 +22,9 @@ public class MemberController extends HttpServlet {
 		RequestDispatcher rd =null;
 		String jspName = "";
 		System.out.println(request.getParameter("action"));
+		CustomerBean param = new CustomerBean();
+		//MemberService ms = new MemberServiceImpl();
+		MemberService service = new MemberServiceImpl();
 		switch(request.getParameter("action")) {
 		case "move":
 		//	System.out.println(String.format(Constants.VIEW_PATH , "customer", 
@@ -33,23 +36,23 @@ public class MemberController extends HttpServlet {
 			break;
 			
 		
-		case "login":
-			break;
+		
 		case "join":
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			String name = request.getParameter("name");
 			String ssn = request.getParameter("ssn");
 			String credit = request.getParameter("credit");
-			CustomerBean param = new CustomerBean();
+			//CustomerBean param = new CustomerBean();
+			
 			param.setCredit(credit);
 			param.setId(id);
 			param.setPw(pw);
 			param.setName(name);
 			param.setSsn(ssn);
 			//System.out.println("회원정보:" + param.toString());
-			MemberService service = new MemberServiceImpl();
-			//service.join(param);
+			
+			service.join(param);
 			System.out.println(request.getParameter("action"));
 			request.getRequestDispatcher(String.format(Constants.VIEW_PATH , "customer", 
 							request.getParameter("dest"))).
@@ -57,9 +60,41 @@ public class MemberController extends HttpServlet {
 			
 			
 				break;
+				
+		case "login":
+			id = request.getParameter("lid");
+			pw = request.getParameter("lpw");
+			System.out.println("맥락이 맞아서 도착234");
+			param.setId(request.getParameter("lid"));
+			param.setPw(request.getParameter("lpw"));
+			CustomerBean cb = new CustomerBean();
+			cb = service.login(param);
+			if(cb.getId().equals("lid")) {
+				System.out.println("왜이래" +param.getId() + cb.getId());
+				request.setAttribute("customer", param);
+				System.out.println(String.format("로그인진입    아이디: %s 비번: %s", 
+						param.getId(),param.getPw()));
+				request.getRequestDispatcher(String.format(
+						Constants.VIEW_PATH , "customer" , request.getParameter("dest")))
+				.forward(request, response);;
+				System.out.println(param.toString());
+			
+			}
+			else {
+				request.getRequestDispatcher(String.format(
+						Constants.VIEW_PATH , "customer" , "login"))
+				.forward(request, response);;
+			}
+			
+			
+			//param.setName("김유신");
+			
+			break;
+		case "existId":
+			break;
 		}
 		
-		System.out.println("맥락이 맞아서 도착234");
+		
 		
 		
 		

@@ -3,6 +3,8 @@ package com.bank.web.serviceimpls;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bank.web.daoimpls.MemberDAOImpl;
+import com.bank.web.daos.MemberDAO;
 import com.bank.web.domains.CustomerBean;
 import com.bank.web.domains.EmployeeBean;
 import com.bank.web.domains.MemberBean;
@@ -10,8 +12,102 @@ import com.bank.web.services.MemberService;
 
 
 public class MemberServiceImpl implements MemberService{
+
+	MemberDAO dao;
+	public MemberServiceImpl() {
+		dao = new MemberDAOImpl();
+		
+	}
 	
-	private List<CustomerBean> customers;
+	@Override
+	public void join(CustomerBean param) {
+		dao.insertCustomer(param);
+		
+		
+	}
+
+	@Override
+	public void register(EmployeeBean param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<CustomerBean> findAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmployeeBean> findAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberBean> findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberBean findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomerBean login(CustomerBean param) {
+		CustomerBean db = new CustomerBean();
+		//boolean result = false;
+		
+		db = dao.login(db);
+		
+		
+		
+		return db;
+	}
+
+	@Override
+	public int countCustomers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countEmployees() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean existId(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void updatePass(MemberBean param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean deleteMember(MemberBean param) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	/*private List<CustomerBean> customers;
 	private List<EmployeeBean> employees;
 	
 	public MemberServiceImpl() {
@@ -95,7 +191,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean login(MemberBean param) {
+	public MemberBean login(MemberBean param) {
 		boolean flag = false;
 		MemberBean m = findById(param.getId());
 		for(CustomerBean c : customers) {
@@ -164,6 +260,6 @@ public class MemberServiceImpl implements MemberService{
 		return (employees.contains(m))? employees.remove(m): customers.remove(m);
 		
 		
-	}
+	}*/
 
 }
