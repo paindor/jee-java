@@ -9,30 +9,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bank.web.command.Transfer;
+import com.bank.web.command.Command;
+import com.bank.web.command.MoveCommand;
+import com.bank.web.command.Order;
 import com.bank.web.domains.CustomerBean;
 import com.bank.web.pool.Constants;
 import com.bank.web.serviceimpls.MemberServiceImpl;
 import com.bank.web.services.MemberService;
 
-
-@WebServlet("/member.do")
+/*
+ */
+@WebServlet("/customer.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd =null;
+		MoveCommand cmd = null;
+		
+		
 		String jspName = "";
 		System.out.println(request.getParameter("action"));
 		CustomerBean param = new CustomerBean();
 		//MemberService ms = new MemberServiceImpl();
 		MemberService service = new MemberServiceImpl();
-		switch(request.getParameter("action")) {
+		try {
+			cmd = new MoveCommand(request);
+			cmd.execute();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		switch(cmd.getAction()) {
 		case "move":
 		//	System.out.println(String.format(Constants.VIEW_PATH , "customer", 
-		//					request.getParameterValues("dest")));
-			request.getRequestDispatcher(
-					String.format(Constants.VIEW_PATH , "customer", 
-							request.getParameter("dest"))).
-			forward(request, response);
+		//			request.getParameterValues("dest")));
+		
+			try {
+				Transfer.forward(request, response, cmd);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			break;
 			
 		
@@ -53,10 +72,13 @@ public class MemberController extends HttpServlet {
 			//System.out.println("회원정보:" + param.toString());
 			
 			service.join(param);
-			System.out.println(request.getParameter("action"));
-			request.getRequestDispatcher(String.format(Constants.VIEW_PATH , "customer", 
-							request.getParameter("dest"))).
-			forward(request, response);
+			try {
+				command.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			
 				break;
@@ -71,12 +93,7 @@ public class MemberController extends HttpServlet {
 			cb = service.login(param);
 			if(cb.getId().equals("lid")) {
 				System.out.println("왜이래" +param.getId() + cb.getId());
-				request.setAttribute("customer", param);
-				System.out.println(String.format("로그인진입    아이디: %s 비번: %s", 
-						param.getId(),param.getPw()));
-				request.getRequestDispatcher(String.format(
-						Constants.VIEW_PATH , "customer" , request.getParameter("dest")))
-				.forward(request, response);;
+				
 				System.out.println(param.toString());
 			
 			}
@@ -102,6 +119,10 @@ public class MemberController extends HttpServlet {
 		
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());*/
+/*
+ * 
+ */
+		
 	}
 
 	

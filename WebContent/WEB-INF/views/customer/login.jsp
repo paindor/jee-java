@@ -11,7 +11,7 @@
 <body>
 <div>
 	<h2>로그인</h2>
-	<form id = "login" action= '<%=request.getContextPath()%>/member.do'>
+	<form id = "login" action= '<%=request.getContextPath()%>/customer.do'>
 		  아이디<input type="text" name = "lid"/> <br>
 		비밀번호<input type="text" name = "lpw"/> <br>
 		<input type="hidden" name = "action" value = "login" />

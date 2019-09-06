@@ -1,10 +1,12 @@
 package com.bank.web.domains;
 
+import com.oracle.webservices.internal.api.databinding.DatabindingMode;
+
+import lombok.Data;
+@Data
+
 public class EmployeeBean extends MemberBean{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String num;
 

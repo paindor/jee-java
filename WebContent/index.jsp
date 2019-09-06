@@ -24,12 +24,12 @@
 <script>
 $('#btn').click(function() {
 	alert('버튼클릭');
-	location.assign('<%=request.getContextPath()%>/member.do?action=move&dest=login');
+	location.assign('<%=request.getContextPath()%>/customer.do?&page=login');
 	
 });
 $('#clk').click(function() {
 	alert('바로가즈아');
-	location.assign('<%=request.getContextPath()%>/member.do?action=move&dest=join');
+	location.assign('<%=request.getContextPath()%>/customer.do?&page=join');
 });
 </script>
 </body>
