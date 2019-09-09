@@ -15,7 +15,7 @@
 		  아이디<input type="text" name = "lid"/> <br>
 		비밀번호<input type="text" name = "lpw"/> <br>
 		<input type="hidden" name = "action" value = "login" />
-		<input type="hidden" name = "dest" value = "mypage" />
+		<input type="hidden" name = "page" value = "mypage" />
 		<input type = "submit" value = "전송"/>
 	</form>
 </div>

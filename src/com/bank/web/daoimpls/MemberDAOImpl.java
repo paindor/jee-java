@@ -13,7 +13,7 @@ import com.bank.web.pool.Constants;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class MemberDAOImpl implements MemberDAO {
-	
+	CustomerBean cust ;
 	@Override
 	public void insertCustomer(CustomerBean param) {
 		try {
@@ -41,18 +41,31 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public CustomerBean login(CustomerBean param) {
 		try {
+			cust = new CustomerBean();
 			File file = new File(Constants.FILE_PATH + "dd.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String para = reader.readLine();
 			String[] spl = para.split("/");
+			reader.close();
+			
+			
 			System.out.println(spl[3]);
 		//	param.getId() +"/" + param.getPw()+"/" +param.getSsn()+"/" +
 		//	param.getCredit())
-			param.setId(spl[0]);
-			param.setPw(spl[1]);
-			param.setName(spl[2]);
-			param.setSsn(spl[3]);
-			param.setCredit(spl[4]);
+			
+			
+			if(spl[0].equals(param.getId())) {
+				cust.setId(spl[0]);
+				cust.setPw(spl[1]);
+				cust.setName(spl[2]);
+				cust.setSsn(spl[3]);
+				cust.setCredit(spl[4]);
+				
+			}
+			else {
+				cust = null;
+			}
+			
 		
 			
 			
@@ -71,7 +84,7 @@ public class MemberDAOImpl implements MemberDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return param;
+		return cust;
 	}
 	
 

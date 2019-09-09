@@ -7,7 +7,7 @@ public class MoveCommand  extends Command{
 		
 		setRequest(request);
 		setDomain(domain);
-		setAction(request.getParameter("action"));
+		setAction(request.getParameter("action") == null? "mvoe" : request.getParameter("action"));
 		execute();
 		
 		

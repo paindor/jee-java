@@ -31,12 +31,18 @@ public class Command implements Order {
 		String path = request.getServletPath();
 		System.out.println("서브린패스가 뭐냐 : "+ path);
 
-		path = path.replace(".do", "");
+		domain = path.replace(".do", "");
+		domain = domain.substring(1);
+		System.out.println(domain);
+		
 		
 	}
 	public void setPage() {
-		page = request.getParameter("dest");
+		page = request.getParameter("page");
 		
+	}
+	public void setView(String domain, String page) {
+		this.view = String.format(Constants.VIEW_PATH , domain, page);
 	}
 
 

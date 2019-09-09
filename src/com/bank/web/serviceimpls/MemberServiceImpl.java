@@ -61,7 +61,7 @@ public class MemberServiceImpl implements MemberService{
 		CustomerBean db = new CustomerBean();
 		//boolean result = false;
 		
-		db = dao.login(db);
+		db = dao.login(param);
 		
 		
 		
